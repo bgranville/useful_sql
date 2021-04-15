@@ -31,7 +31,6 @@ class SQLDBConnection():
     """To create a new instance of this class, you have to provide a server.
     Eg db_connection = sql_query_functions.SQLDBConnection(server='servername')
     The core functions a user would be expected to use have descriptions.
-
     """
 
     def __init__(self, server, readonly=True, query=None):
@@ -42,7 +41,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def get_connection(self, server=None):
-        """This is preconfigured for my own personal preferences, using
+        """
+        SQLDBConnection.get_connection(server)
+
+        This is preconfigured for my own personal preferences, using
         the appropriate driver, a trusted connection, etc. A user could
         set the object connection property manually to configure these a
         different way, eg:
@@ -64,7 +66,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def execute_query(self, query=None):
-        """Pass a valid SQL query to this function and it will execute it.
+        """
+        SQLDBConnection.execute_query(query)
+
+        Pass a valid SQL query to this function and it will execute it.
         It doesn't by default return the results of a select statement. If you
         want results from a SELECT statement, it is better to use one of the
         sql_query_functions:
@@ -91,7 +96,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def execute_query_file(self, file_loc):
-        """Specify a .sql file location, and then use this function to execute it.
+        """
+        SQLDBConnection.execute_query_file(file_location)
+
+        Specify a .sql file location, and then use this function to execute it.
         Will not return any data - just executes the query! You can get the data
         via the same instructions for  the execute_query function."""
         with open(file_loc, 'r') as query_file:
@@ -124,7 +132,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def execute_query_to_set(self, query):
-        """Pass a select query that returns a single column, and this will
+        """
+        SQLDBConnection.execute_query_to_set(query)
+
+        Pass a select query that returns a single column, and this will
         return those results as a set."""
         self.query = query
         self.execute_query()
@@ -133,7 +144,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def execute_query_to_dataframe(self, query):
-        """Pass a select query that returns multiple columns, and this will
+        """
+        SQLDBConnection.execute_query_to_dataframe(query)
+
+        Pass a select query that returns multiple columns, and this will
         return those results as a pandas dataframe."""
         self.query = query
         self.execute_query()
@@ -142,7 +156,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def upload_data(self, data, query):
-        """Pass this function a list of tuples and an appropriately
+        """
+        SQLDBConnection.execute_query_to_dataframe(list_of_tuples, insert_query)
+
+        Pass this function a list of tuples and an appropriately
         formatted query and it will upload the data.
         Note that the user needs permission to write to the database,
         and needs to have set the initial SQLDBConnection as readonly=False.
@@ -176,7 +193,10 @@ class SQLDBConnection():
 
     @catch_error_wrapper
     def upload_dataframe(self, dataframe, full_table_name):
-        """This is a function to upload a dataframe - slightly simpler than the
+        """
+        SQLDBConnection.execute_query_to_dataframe(dataframe, full_table_name)
+
+        This is a function to upload a dataframe - slightly simpler than the
         upload_data function as it does some of the work for you.
         Pass it the dataframe and the full table name - note it will create and
         write the table, so it will fail if the table already exists!
