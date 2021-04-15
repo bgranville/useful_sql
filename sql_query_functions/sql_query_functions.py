@@ -181,7 +181,7 @@ class SQLDBConnection():
         """
         data = list(dataframe.itertuples(index=False, name=None))
         list_of_columns = ', '.join(dataframe.columns)
-        question_marks = ', '.join(['?' for i in dataframe.columns)
+        question_marks = ', '.join(['?' for i in dataframe.columns])
         query = f'INSERT INTO {full_table_name} ({list_of_columns}) VALUES ({question_marks})'
 
         try:
