@@ -9,7 +9,7 @@ import pandas
 
 def catch_error_wrapper(func):
     def class_method_wrapper(self, *args, **kwargs):
-
+        self.__doc__ = func.__doc__
         try:
             if args and kwargs:
                 return func(self, *args, **kwargs)
@@ -30,7 +30,9 @@ class SQLDBConnection():
 
     """To create a new instance of this class, you have to provide a server.
     Eg db_connection = sql_query_functions.SQLDBConnection(server='servername')
-    The core functions a user would be expected to use have descriptions."""
+    The core functions a user would be expected to use have descriptions.
+
+    """
 
     def __init__(self, server, readonly=True, query=None):
         self.server = server
