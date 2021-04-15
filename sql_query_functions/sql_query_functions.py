@@ -9,7 +9,6 @@ import pandas
 
 def catch_error_wrapper(func):
     def class_method_wrapper(self, *args, **kwargs):
-        self.__doc__ = func.__doc__
         try:
             if args and kwargs:
                 return func(self, *args, **kwargs)
@@ -24,6 +23,7 @@ def catch_error_wrapper(func):
                           func.__name__,
                           repr(e)))
             return None
+    class_method_wrapper.__doc__ = func.__doc__
     return class_method_wrapper
 
 class SQLDBConnection():
